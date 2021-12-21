@@ -31,3 +31,7 @@ path:
 
 
 Next step, open `more_than_10.txt`, you have all the names of items and Pokémon that exceeds the maximum number of characters allowed, you have to replace these by a shorter name (ex: Crabominable > Crabminabl ). The items shouldn't exceeds 13 characters and the Pokémon names shouldn't exceeds 10 characters.
+
+# Credits
+
+Pokecreator and myself for the script and veekun for the csv lib (available at : https://github.com/veekun/pokedex/tree/master/pokedex/data/csv)
