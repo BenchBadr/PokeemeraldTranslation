@@ -11,19 +11,7 @@ import pathlib
 def traduction(langue):
   start_time = time.time()
   ws.update_idletasks()
-  try:
-   os.remove("folder\pokedex_text.h")
-  except:
-    pass
-  try:
-   os.remove("folder\species_names.h")
-  except:
-    pass
-  try:
-   os.remove("folder\item.h")
-  except:
-    pass
-  txt2['text'] ="(1/3) Pokédex descriptions..."
+  txt2['text'] ="(1/4) Pokédex descriptions..."
   with open("folder\more_than_10.txt",'w',encoding="utf-8") as filcl:
     pass
   with open("folder\original_pdex_t.txt",encoding="utf-8") as f:
@@ -36,10 +24,11 @@ def traduction(langue):
     ld = {"1":"5","7":"9","6":"1","5":"3","2":"6","4":"8","3":"7"}
     lc = ld[l]
     print("_"*7+"\nTraduction des descriptions du Pokédex :")
-  with open('folder\pokedex_text.txt', 'w',encoding="utf-8") as f:
+  with open('folder\pokedex_text.h','w',encoding="utf-8") as f:
     with open('folder\pokemon_species_flavor_text.csv', newline='',encoding="utf-8") as csvfile:
       reader = csv.DictReader(csvfile)
       a=0
+      f.write('''const u8 gDummyPokedexText[] = _(`\n    "Erreur 404 !\\n"\n    "Pokémon introuvable");\n''')
       for ligne in reader:
         ap = round(100*a/898,1)
         sys.stdout.write(f"\r{ap}%")
@@ -59,35 +48,44 @@ def traduction(langue):
           descri = ligne['flavor_text']
           dex = int(ligne['species_id'])
           poke = liste_noms[dex-1]
-          descri = descri.split("\n")
+          descri = descri.replace("\n"," ")
+          descliste = []
+          n = 42
+          chunks = [descri[i:i+n] for i in range(0, len(descri), n)]
+          descri = chunks
           for i in range(len(descri)):
-            descri[i] = '''    "'''+descri[i]+'''\\n"\n'''
+            try:
+              if descri[i+1][0]!=" " and descri[i][-1] !=" ":
+               descri[i] = descri[i]+"-"
+            except:
+              pass
+            descliste.append(descri[i])
+          for i in range(len(descri)):
+            descri[i] = '''    "'''+str((descri[i]))+'''\\n"\n'''
             if i == len(descri)-1:
-              descri[i]=descri[i][:-4]+'''"'''+");"
+             descri[i]=descri[i][:-4]+'''"'''+");"
           poke=poke.split("-")
           for i in range(len(poke)):
-            poke[i]=poke[i].capitalize()
-
+              poke[i]=poke[i].capitalize()
           forcode = f"const u8 g{''.join(poke)}PokedexText[] = _(\n{''.join(descri)}\n\n"
-          f.write(forcode)
-  os.rename('folder\pokedex_text.txt', 'folder\pokedex_text.h')
+          f.write(forcode.replace("’","'").replace("<",'''("''').replace(">",'''")''').replace("°C","deg.C").replace("°","").replace("»","").replace("«","").replace("’","'").replace(" "," ").replace("Nidoranf","NidoranF").replace("Nidoranm","NidoranM").replace("Mrmime","MrMime").replace("Hooh","HoOh").replace("Mimejr","MimeJr").replace("Porygonz","PorygonZ").replace("Typenull","TypeNull").replace("Tapukoko","TapuKoko").replace("Tapulele","TapuLele").replace("Tapubulu","TapuBulu").replace("Tapufini","TapuFini").replace("Mrrime","MrRime"))
   end_time = time.time()
   time_lapsed = round(end_time - start_time,1)
   print("\n"+"_"*7)
   print(f"\nOpération Réussie, temps écoulé : {time_lapsed}s")
   #-------------------------------------------------------
   start_time = time.time()
-  with open('species_names.txt', 'w',encoding="utf-8") as f:
+  with open('move_names.h', 'w',encoding="utf-8") as f:
     pass
   ws.update_idletasks()
-  txt2['text'] ="(2/3) Pokédex names..."
+  txt2['text'] ="(2/4) Pokédex names..."
   print("_"*7+"\nTraduction des noms :")
-  with open('folder\sn.txt','r',encoding="utf-8") as firstfile, open('folder\species_names.txt','a',encoding="utf-8") as secondfile:
+  with open('folder\sn.txt','r',encoding="utf-8") as firstfile, open('folder\species_names.h','a',encoding="utf-8") as secondfile:
       for line in firstfile:
         secondfile.write(line)
-  with open("folder\species_names.txt",encoding="utf-8") as f:
+  with open("folder\sn.txt",encoding="utf-8") as f:
     contenu=f.read()
-  with open("folder\species_names.txt","w",encoding="utf-8") as f:
+  with open("folder\species_names.h","w",encoding="utf-8") as f:
     with open("folder\pokemon_species_names.csv",newline='',encoding="utf-8") as csvfile:
         reader = csv.DictReader(csvfile)
         dico = {}
@@ -107,21 +105,20 @@ def traduction(langue):
       ws.update_idletasks()
       txt['text'] =(f"{round(i*100/897)}%")
       pb["value"]=round(i*100/897)
-      contenu = contenu.replace(result[i],dico[result[i]])
+      contenu = contenu.replace(result[i],dico[result[i]]).replace(">",'''")''').replace("<",'''("''')
       if len(dico[result[i]]) > 10:
         with open('folder\more_than_10.txt','a',encoding="utf-8") as f2:
-         f2.write("- Poké : "+dico[result[i]]+" +de 10 caractères\n")
-    contenu=contenu.replace("<",'''("''').replace(">",'''")''')
+         f2.write("- Poké : "+dico[result[i]]+f" +de 10 car ({len(dico[result[i]])}+'\n")
+    contenu=contenu
     f.write(contenu)
   end_time = time.time()
   time_lapsed = round(end_time - start_time,1)
-  os.rename("folder\species_names.txt","folder\species_names.h")
   print("\n\nVeuillez vérifier le fichier 'more_than_10.txt' pour voir s'il y a des noms excédant 10 caractères.\n"+"_"*7+f"\n\nOpération Réussie, temps écoulé : {time_lapsed}s")
   #-------------------------------------------------------
   print("-"*7+"\nTraduction des noms des objets :")
   start_time = time.time()
   ws.update_idletasks()
-  txt2['text'] ="(3/3) Item names..."
+  txt2['text'] ="(3/4) Item names..."
   with open('folder\item_names.csv', newline='',encoding="utf-8") as csvfile:
     reader = csv.DictReader(csvfile)
     idico = {}
@@ -148,27 +145,96 @@ def traduction(langue):
         im = ldico[result[i].replace("Feather"," Feather").replace("Capsle"," Capsule").replace("Yellw","Yellow ").replace("GreenAp","Green Ap").replace("WhiteAp","White Ap").replace("BlackAp","Black Ap").replace("Electrc","Electric ").replace("Fightng","Fighting ").replace("PsychicM","Psychic M").replace("iteX","ite X").replace("iteY","ite Y").replace("Poisinium Z","Poisonium Z").replace("U-N","Ultran").replace("DeepSea","Deep Sea ").replace("tIce","t Ice").replace("'","’").replace("Weaknss","Weakness ").replace("SafetyGoggles","Safety Goggles").replace("AdrenalineOrb","Adrenaline Orb").replace("TerainExtendr","Terrain Extender").replace("ProtectvePads","Protective Pads").replace("MCHN","Machine").replace("{POKEBLOCK}","Pokéblock").replace(" Ticket","Ticket").replace("S.S.Ticket","S.S. Ticket").replace("EonTicket","Eon Ticket").replace("Oak’s","Oak's")]
         if len(im) > 13:
           with open('folder\more_than_10.txt','a',encoding="utf-8") as f2:
-           f2.write(f"- Objet : {im} + 13 car\n")
-        contenu = contenu.replace(result[i],im)
-      contenu=contenu.replace("<",'''("''').replace(">",'''")''')
-      with open("folder\item.txt","w",encoding="utf-8") as finfile:
+           f2.write(f"- Objet : {im} + 13 car ({len(im)}\n")
+        contenu = contenu.replace('''<'''+result[i]+'''>''','''("'''+im+'''")''')
+      contenu=contenu.replace("<",'''("''').replace(">",'''")''').replace('''")= GEN''',">= GEN").replace("_CS","_HM").replace("_CT","_TM").replace("description = sCT","description = sTM").replace("description = sCS","description = sHM").replace("’","'").replace("Poussière Étoile","Pouss. Étoile").replace("Morceau d'Étoile","Morc. Étoile").replace("CoquilleTréfonds","Coqu.Tréfonds").replace("Fossile Racine","FossileRacine").replace("Fossile Griffe","FossileGriffe").replace("Fossile Armure","FossileArmure").replace("Fossile Plaque","FossilePlaque").replace("Fossile Mâchoire","Foss.Mâchoire").replace("Fossile Nageoire","Foss.Nageoire").replace("Noigrume Rouge","NoigrumeRouge").replace("Noigrume Jaune","NoigrumeJaune").replace("Noigrume Blanc","NoigrumeBlanc").replace("Sachet Senteur","SachetSenteur").replace("Plaque Toxicité","PlaqueToxique").replace("Plaque Insecte","PlaqueInsecte").replace("Plaque Fantôme","PlaqueFantôme").replace("Joyau Électrik","JoyauÉlectrik").replace("Joyau Ténèbres","JoyauTénèbres").replace("Marshadozélite","Marshadzélite").replace("Ultranécrozélite","U-Nécrozélite").replace("Encens Bizarre","EncensBizarre").replace("Bracelet Macho","BraceletMacho").replace("Poignet Pouvoir","PoignePouvoir").replace("Ceinture Pouvoir","Ceint.Pouvoir").replace("Lentille Pouvoir","LentillePouv.").replace("Bandeau Pouvoir","Band. Pouvoir").replace("Chaîne Pouvoir","ChaînePouvoir").replace("Graîne Miracle","GraîneMiracle").replace("Glace Éternelle","GlacÉternelle").replace("Ceinture Noire","Ceint. Noire").replace("Cuillère Tordue","Cuill. Tordue").replace("Poudre Argentée","PoudrArgentée").replace("Lunettes Noires","Lun. Noires").replace("Lunettes Choix","Lun. Choix").replace("Mouchoir Choix","Mouch. Choix").replace("Graine Électrik","GraineÉlectrk").replace("Graine Psychique","Graine Psych.").replace("Lichen Lumineux","Lichen Lumin.").replace("Boule de Neige","BouleDeNeige").replace("Rune Purifiante","Rune Purif.").replace("Bandeau Muscle","BandeauMuscle").replace("Lunettes Sages","LunettesSages").replace("Ceinture Force","Ceint. Force").replace("Bande Étreinte","BandeÉtreinte").replace("Vulné-Assurance","Vulné-Assur.").replace("Veste de Combat","VesteDeCombat").replace("Lunettes Filtre","Lun. Filtre").replace("Vélo de Course","VéloDeCourse").replace("Boîte Pokéblocs","BoîtePokébloc").replace("Lettre à Pierre","Let. à Pierre").replace("Lunettes Sable","Lun. Sable").replace("Passe Concours","PasseConcours").replace("Carte Magnétique","Carte Magnét.").replace("Super Repousse","SuperRepousse").replace("Graine Miracle","GraineMiracle")
+      with open("folder\item.h","w",encoding="utf-8") as finfile:
        finfile.write(contenu)
       end_time = time.time()
       time_lapsed = round(end_time - start_time,1)
       print("\n\nVeuillez vérifier le fichier 'more_than_10.txt' pour voir s'il y a des noms excédant 13 caractères.\n"+"_"*7+f"\n\nOpération Réussie, temps écoulé : {time_lapsed}s")
-      ws.update_idletasks()
-      rep = tf.askdirectory(initialdir="pokeemerald",title='Sélectionnez un dossier')
-      path = pathlib.Path(rep).resolve().parent
-      print(path)
-      os.rename("folder\item.txt","folder\item.h")
-      import shutil
-      shutil.copy("folder\species_names.h", path)
-      shutil.copy("folder\pokedex_text.h", path )
-      shutil.copy("folder\item.h", path)
-      shutil.copy("folder\more_than_10.txt", path )
-      shutil.copy("folder\Readme.md", path)
+#-------------------------------------------------------------------------------------------------
+  start_time = time.time()
+  ws.update_idletasks()
+  txt2['text'] ="(4/4) Moves names..."
+  try:
+      os.remove("folder\more_than_12.txt")
+  except:
+      pass
+  try:
+   os.remove("folder\move_names.h")
+  except:
+      pass
 
-      txt2['text'] ="Finish ! Next step, open Readme.md"
+  with open("folder\moves.csv",newline='',encoding="utf-8") as csvfile:
+      reader = csv.DictReader(csvfile)
+      idtotr = {}
+      srctoid = {}
+      srctotr = {}
+      for line in reader:
+          if line['local_language_id'] == "5":
+              idtotr[line['move_id']]=line['name']
+          if line['local_language_id'] == "9":
+              srctoid[line['name']] = line['move_id']
+      for i in range(len(idtotr.keys())):
+          try:
+           srctotr[list(srctoid.keys())[i]] = idtotr[srctoid[list(srctoid.keys())[i]]]
+          except:
+              pass
+  srctotr['-'] = '-'
+  with open("folder\moves_names_o.h",'r',encoding='utf-8') as f:
+      contenu=f.read()
+      result=re.findall("_<(.*)>,",contenu)
+      for i in range(len(result)):
+      # try:
+          if result[i] != '-':
+           if len(srctotr[result[i]]) > 12:
+              srctotr[result[i]]=srctotr[result[i]].split(" ")
+              for x in range(len(srctotr[result[i]])):
+                  srctotr[result[i]][x] = srctotr[result[i]][x].capitalize()
+              srctotr[result[i]]=''.join(srctotr[result[i]])
+              if len(srctotr[result[i]]) > 12 and "-" in srctotr[result[i]]:
+                  srctotr[result[i]]=srctotr[result[i]].split("-")
+                  for y in range(len(srctotr[result[i]])):
+                      srctotr[result[i]][y] = srctotr[result[i]][y].capitalize()
+              srctotr[result[i]]=''.join(srctotr[result[i]])
+              if len(srctotr[result[i]]) > 12:
+                  pass
+                  a = 12-len(srctotr[result[i]])
+                  srctotr[result[i]] = srctotr[result[i]][:a]
+          if result[i] == "-":
+              srctotr[result[i]] = '-'
+          if len(srctotr[result[i]]) > 12:
+           with open('folder\more_than_12.txt','a',encoding='utf-8') as er:
+                  er.write(f"{srctotr[result[i]]}, {len(srctotr[result[i]])}, {12-len(srctotr[result[i]])}\n")
+                  pass
+          contenu=contenu.replace("<"+result[i]+">","<"+srctotr[result[i]]+"11"+">")
+          #except Exception as e:
+          #  print(e)
+          # with open('more_than_12.txt','a',encoding='utf-8') as er:
+                  #er.write(f"Erreur ! : {[result[i]]}, {[result[i]]}, {12-len([result[i]])}\n")
+          #     pass
+  with open("folder\move_names.h",'a',encoding='utf-8') as f2:
+      a = (contenu).replace('''<''','''("''').replace('''>''','''")''').replace("’","'").replace("11","")
+      f2.write(a)
+
+  end_time = time.time()
+  time_lapsed = round(end_time - start_time,1)
+  print("\n\nVeuillez vérifier le fichier 'more_than_10.txt' pour voir s'il y a des noms excédant 13 caractères.\n"+"_"*7+f"\n\nOpération Réussie, temps écoulé : {time_lapsed}s")
+#----------------------------------------------------------------------------------------------------------------------
+  ws.update_idletasks()
+  rep = tf.askdirectory(initialdir="pokeemerald",title='Sélectionnez un dossier')
+  path = pathlib.Path(rep).resolve().parent
+  print(path)
+  import shutil
+  shutil.copy("folder\species_names.h", path)
+  shutil.copy("folder\pokedex_text.h", path )
+  shutil.copy("folder\item.h", path)
+  shutil.copy("folder\more_than_10.txt", path )
+  shutil.copy("folder\Readme.md", path)
+  os.remove("move_names.h")
+
+  txt2['text'] ="Finish ! Next step, open Readme.md"
 
 
 
