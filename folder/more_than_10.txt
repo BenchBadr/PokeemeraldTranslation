@@ -1,0 +1,83 @@
+- Poké : Blindépique +de 10 car (11+'
+- Poké : Excavarenne +de 10 car (11+'
+- Poké : Lépidonille +de 10 car (11+'
+- Poké : Cabriolaine +de 10 car (11+'
+- Poké : Pandespiègle +de 10 car (12+'
+- Poké : Cupcanaille +de 10 car (11+'
+- Poké : Desséliande +de 10 car (11+'
+- Poké : Banshitrouye +de 10 car (12+'
+- Poké : Sonistrelle +de 10 car (11+'
+- Poké : Crabominable +de 10 car (12+'
+- Poké : Froussardine +de 10 car (12+'
+- Poké : Prédastérie +de 10 car (11+'
+- Poké : Floramantis +de 10 car (11+'
+- Poké : Trépassable +de 10 car (11+'
+- Poké : Concombaffe +de 10 car (11+'
+- Poké : Denticrisse +de 10 car (11+'
+- Poké : Bamboiselle +de 10 car (11+'
+- Poké : Engloutyran +de 10 car (11+'
+- Poké : Pierroteknik +de 10 car (12+'
+- Poké : Rongourmand +de 10 car (11+'
+- Poké : Tournicoton +de 10 car (11+'
+- Poké : Monthracite +de 10 car (11+'
+- Poké : Grillepattes +de 10 car (12+'
+- Poké : Scolocendre +de 10 car (11+'
+- Poké : Polthégeist +de 10 car (11+'
+- Poké : M. Glaquette +de 10 car (12+'
+- Poké : Frissonille +de 10 car (11+'
+- Poké : Pachyradjah +de 10 car (11+'
+- Poké : Dispareptil +de 10 car (11+'
+- Objet : Super Repousse + 13 car (14
+- Objet : Poussière Étoile + 13 car (16
+- Objet : Morceau d’Étoile + 13 car (16
+- Objet : CoquilleTréfonds + 13 car (16
+- Objet : Fossile Racine + 13 car (14
+- Objet : Fossile Griffe + 13 car (14
+- Objet : Fossile Armure + 13 car (14
+- Objet : Fossile Plaque + 13 car (14
+- Objet : Fossile Mâchoire + 13 car (16
+- Objet : Fossile Nageoire + 13 car (16
+- Objet : Noigrume Rouge + 13 car (14
+- Objet : Noigrume Jaune + 13 car (14
+- Objet : Noigrume Blanc + 13 car (14
+- Objet : Sachet Senteur + 13 car (14
+- Objet : Plaque Toxicité + 13 car (15
+- Objet : Plaque Insecte + 13 car (14
+- Objet : Plaque Fantôme + 13 car (14
+- Objet : Joyau Électrik + 13 car (14
+- Objet : Joyau Ténèbres + 13 car (14
+- Objet : Marshadozélite + 13 car (14
+- Objet : Ultranécrozélite + 13 car (16
+- Objet : Encens Bizarre + 13 car (14
+- Objet : Bracelet Macho + 13 car (14
+- Objet : Poignet Pouvoir + 13 car (15
+- Objet : Ceinture Pouvoir + 13 car (16
+- Objet : Lentille Pouvoir + 13 car (16
+- Objet : Bandeau Pouvoir + 13 car (15
+- Objet : Chaîne Pouvoir + 13 car (14
+- Objet : Graine Miracle + 13 car (14
+- Objet : Glace Éternelle + 13 car (15
+- Objet : Ceinture Noire + 13 car (14
+- Objet : Cuillère Tordue + 13 car (15
+- Objet : Poudre Argentée + 13 car (15
+- Objet : Lunettes Noires + 13 car (15
+- Objet : Lunettes Choix + 13 car (14
+- Objet : Mouchoir Choix + 13 car (14
+- Objet : Graine Électrik + 13 car (15
+- Objet : Graine Psychique + 13 car (16
+- Objet : Lichen Lumineux + 13 car (15
+- Objet : Boule de Neige + 13 car (14
+- Objet : Rune Purifiante + 13 car (15
+- Objet : Bandeau Muscle + 13 car (14
+- Objet : Lunettes Sages + 13 car (14
+- Objet : Ceinture Force + 13 car (14
+- Objet : Bande Étreinte + 13 car (14
+- Objet : Vulné-Assurance + 13 car (15
+- Objet : Veste de Combat + 13 car (15
+- Objet : Lunettes Filtre + 13 car (15
+- Objet : Vélo de Course + 13 car (14
+- Objet : Boîte Pokéblocs + 13 car (15
+- Objet : Lettre à Pierre + 13 car (15
+- Objet : Lunettes Sable + 13 car (14
+- Objet : Passe Concours + 13 car (14
+- Objet : Carte Magnétique + 13 car (16
