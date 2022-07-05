@@ -37,3 +37,8 @@ Next step, open `more_than_10.txt`, you have all the names of items and Pokémon
 # Credits
 
 Pokecreator and myself for the script and veekun for the csv lib (available at : https://github.com/veekun/pokedex/tree/master/pokedex/data/csv)
+
+#Useful Links
+
+Pokémon Résurrection's discord server to get help or to contribute : https://discord.gg/jemEuB3pMJ
+Pokémon Résurrection's website : https://pokemon.version-resurrection.repl.co/index.html
