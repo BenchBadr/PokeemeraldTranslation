@@ -1,5 +1,7 @@
 # INSTRUCTIONS
-First of all, you have to launch "PokeemeraldTraductor.exe", chose a language then, you just have to wait until the traduction finish. A root will appear and ask you select a folder, in this folder will be saved five files :
+First of all, you have to launch "PokeemeraldTranslator.exe", 
+actually there is no ".exe" so, you'll just have to launch the .py script (and import the packages w/ pip if necessary)
+Choose a language then, you just have to wait until the traduction finish. A root will appear and ask you select a folder, in this folder will be saved five files :
 - `species_names.h`
 - `pokedex_text.h`
 - `item.h`
@@ -15,18 +17,18 @@ path :
 
 
 
- `\pokeemerald-expansion-master\pokeemerald-expansion-master\src\data\pokemon\pokedex_text.h `
+ `src/data/pokemon/pokedex_text.h `
 
 - species_names.h 
 path:
 
- `\pokeemerald-expansion-master\pokeemerald-expansion-master\src\data\text\species_names.h` 
+ src/data/text/species_names.h` 
 
 
 - item.h
 path:
 
- `\pokeemerald-expansion-master\pokeemerald-expansion-master\src\data\item.h`
+ `src/data/items.h`
 
 
 
